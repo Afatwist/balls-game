@@ -11,8 +11,6 @@ body {
 	font-family: 'Sofia Sans Condensed', 'Roboto Slab', sans-serif;
 	font-size: 24px;
 	color: burlywood;
-	height: 100vh;
-	width: 100vw;
 	overflow: hidden;
 }
 
@@ -48,6 +46,25 @@ p {
 	margin-bottom: 15px;
 }
 
+@media (max-width: 500px) {
+	.welcome-text {
+		width: 85vw;
+		padding: 10px;
+		font-size: 22px;
+		margin-bottom: 15px;
+	}
+
+	.welcome-text h1,
+	p {
+		margin-bottom: 10px;
+	}
+
+	.welcome-text h1 {
+		font-size: 32px;
+	}
+}
+
+
 .info {
 	background: #552f1e;
 	width: 480px;
@@ -59,30 +76,13 @@ p {
 	padding-bottom: 10px;
 }
 
-.restart-btn {
-	width: 200px;
-	height: 100px;
-	position: absolute;
-	display: block;
-	z-index: 100;
-}
-
-.btn {
-	font-size: inherit;
-	background: #552f1e;
-	color: inherit;
-	padding: 10px;
-	border-radius: 5px;
-	cursor: pointer;
-}
-
-.btn:hover {
-	opacity: 0.8;
+@media (max-width: 500px) {
+	.info {
+		width: 85vw;
+	}
 }
 
 .board {
-	width: 500px;
-	height: 500px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -102,10 +102,16 @@ p {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-
 }
 
-.cell-opacity {
+@media (max-width: 500px) {
+	.cell {
+		width: 9.5vw;
+		height: 9.5vw;
+	}
+}
+
+.cell-disable {
 	pointer-events: none;
 	opacity: 20%;
 	transition: opacity 1.5s;
@@ -118,6 +124,13 @@ p {
 	cursor: grab;
 }
 
+@media (max-width: 500px) {
+	.ball {
+		width: 60%;
+		height: 60%;
+	}
+}
+
 .active-ball {
 	animation: active-ball-anim 1.5s linear infinite alternate;
 }
@@ -128,7 +141,7 @@ p {
 	}
 
 	10% {
-		transform: translateY(20px) scale(1.2, 0.6)
+		transform: translateY(15px) scale(1.2, 0.6)
 	}
 
 	20% {
@@ -160,7 +173,7 @@ p {
 	}
 
 	90% {
-		transform: translateY(-20px) scale(1.2, 0.6)
+		transform: translateY(-15px) scale(1.2, 0.6)
 	}
 
 	100% {
@@ -168,8 +181,92 @@ p {
 	}
 }
 
+@media (max-width: 500px) {
+	@keyframes active-ball-anim {
+		0% {
+			transform: translateY(60%) scale(1.2, 0.5)
+		}
+
+		10% {
+			transform: translateY(50%) scale(1.2, 0.6)
+		}
+
+		20% {
+			transform: translateY(40%) scale(1.1, 0.8)
+		}
+
+		30% {
+			transform: translateY(30%) scale(1, 0.9)
+		}
+
+		40% {
+			transform: translateY(20%) scale(1, 1.1)
+		}
+
+		50% {
+			transform: translateY(0) scale(0.9, 1.2)
+		}
+
+		60% {
+			transform: translateY(-20%) scale(1, 1.1)
+		}
+
+		70% {
+			transform: translateY(-30%) scale(1, 0.9)
+		}
+
+		80% {
+			transform: translateY(-40%) scale(1.1, 0.8)
+		}
+
+		90% {
+			transform: translateY(-50%) scale(1.2, 0.6)
+		}
+
+		100% {
+			transform: translateY(-60%) scale(1.2, 0.5)
+		}
+	}
+}
+
 .way-marker {
 	width: 20px;
 	height: 20px;
 	border-radius: 100%;
+}
+
+@media (max-width: 500px) {
+	.way-marker {
+		width: 30%;
+		height: 30%;
+		border-radius: 100%;
+	}
+}
+
+.restart-btn {
+	width: 200px;
+	height: 100px;
+	position: absolute;
+	display: block;
+	z-index: 100;
+}
+
+@media (max-width: 500px) {
+	.restart-btn {
+		width: 200px;
+		height: 100px;
+	}
+}
+
+.btn {
+	font-size: inherit;
+	background: #552f1e;
+	color: inherit;
+	padding: 10px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.btn:hover {
+	opacity: 0.8;
 }

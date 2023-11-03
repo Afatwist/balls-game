@@ -27,7 +27,7 @@ class Interface {
 	static cellsDisable() {
 		const cells = document.querySelectorAll('.cell')
 		for (const cell of cells) {
-			cell.classList.add('cell-opacity')
+			cell.classList.add('cell-disable')
 		}
 	}
 
@@ -36,7 +36,7 @@ class Interface {
 	static cellsEnable() {
 		const cells = document.querySelectorAll('.cell')
 		for (const cell of cells) {
-			cell.classList.remove('cell-opacity')
+			cell.classList.remove('cell-disable')
 			let ball = cell.querySelector('.ball')
 			if (ball) {
 				ball.remove()

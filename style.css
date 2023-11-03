@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&family=Sofia+Sans+Condensed:wght@500&display=swap');
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: #424242;
+	font-family: 'Sofia Sans Condensed', 'Roboto Slab', sans-serif;
+	font-size: 26px;
+	color: burlywood;
+	height: 100vh;
+	overflow: hidden;
+}
+
+.display {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	width: 100vw;
+	transition: margin 0.5s ease-out;
+}
+
+.display.up {
+	margin-top: -100vh;
+}
+
+.row {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.welcome-text {
+	background: #552f1e;
+	width: 800px;
+	padding: 15px;
+	font-size: 29px;
+	margin-bottom: 20px;
+}
+
+.welcome-text h1,
+p {
+	margin-bottom: 15px;
+}
+
+.info {
+	background: #552f1e;
+	width: 480px;
+	padding-left: 15px;
+	padding-top: 10px;
+}
+
+.info:last-child {
+	padding-bottom: 10px;
+}
+
+.restart-btn {
+	width: 200px;
+	height: 100px;
+	position: absolute;
+	display: block;
+	z-index: 100;
+}
+
+.btn {
+	font-size: inherit;
+	background: #552f1e;
+	color: inherit;
+	padding: 10px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.btn:hover {
+	opacity: 0.8;
+}
+
+.board {
+	width: 600px;
+	height: 600px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.board-row {
+	display: flex;
+}
+
+.cell {
+	border: 2px ridge #3f4149;
+	background-color: #988480;
+	width: 60px;
+	height: 60px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+}
+
+.cell-opacity {
+	pointer-events: none;
+	opacity: 20%;
+	transition: opacity 1.5s;
+}
+
+.ball {
+	width: 40px;
+	height: 40px;
+	border-radius: 100%;
+	cursor: grab;
+}
+
+.active-ball {
+	animation: active-ball-anim 1.5s linear infinite alternate;
+}
+
+@keyframes active-ball-anim {
+	0% {
+		transform: translateY(20px) scale(1.2, 0.5)
+	}
+
+	10% {
+		transform: translateY(20px) scale(1.2, 0.6)
+	}
+
+	20% {
+		transform: translateY(10px) scale(1.1, 0.8)
+	}
+
+	30% {
+		transform: translateY(5px) scale(1, 0.9)
+	}
+
+	40% {
+		transform: translateY(3px) scale(1, 1.1)
+	}
+
+	50% {
+		transform: translateY(0) scale(0.9, 1.2)
+	}
+
+	60% {
+		transform: translateY(-3px) scale(1, 1.1)
+	}
+
+	70% {
+		transform: translateY(-5px) scale(1, 0.9)
+	}
+
+	80% {
+		transform: translateY(-10px) scale(1.1, 0.8)
+	}
+
+	90% {
+		transform: translateY(-20px) scale(1.2, 0.6)
+	}
+
+	100% {
+		transform: translateY(-20px) scale(1.2, 0.5)
+	}
+}
+
+.way-marker {
+	width: 20px;
+	height: 20px;
+	border-radius: 100%;
+}

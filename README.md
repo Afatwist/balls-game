@@ -1,1 +1,1 @@
-# balls-game
+# Игра Balls

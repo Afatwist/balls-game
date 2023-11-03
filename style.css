@@ -9,9 +9,10 @@
 body {
 	background-color: #424242;
 	font-family: 'Sofia Sans Condensed', 'Roboto Slab', sans-serif;
-	font-size: 26px;
+	font-size: 24px;
 	color: burlywood;
 	height: 100vh;
+	width: 100vw;
 	overflow: hidden;
 }
 
@@ -38,7 +39,7 @@ body {
 	background: #552f1e;
 	width: 800px;
 	padding: 15px;
-	font-size: 29px;
+	font-size: 26px;
 	margin-bottom: 20px;
 }
 
@@ -80,8 +81,8 @@ p {
 }
 
 .board {
-	width: 600px;
-	height: 600px;
+	width: 500px;
+	height: 500px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -93,10 +94,10 @@ p {
 }
 
 .cell {
-	border: 2px ridge #3f4149;
+	border: 1px solid #3f4149;
 	background-color: #988480;
-	width: 60px;
-	height: 60px;
+	width: 50px;
+	height: 50px;
 	cursor: pointer;
 	display: flex;
 	align-items: center;
@@ -111,8 +112,8 @@ p {
 }
 
 .ball {
-	width: 40px;
-	height: 40px;
+	width: 35px;
+	height: 35px;
 	border-radius: 100%;
 	cursor: grab;
 }

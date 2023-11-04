@@ -48,19 +48,19 @@ p {
 
 @media (max-width: 500px) {
 	.welcome-text {
-		width: 85vw;
-		padding: 10px;
-		font-size: 22px;
-		margin-bottom: 15px;
+		width: 95vw;
+		padding: 2vw;
+		font-size: 5vw;
+		margin-bottom: 1vw;
 	}
 
 	.welcome-text h1,
 	p {
-		margin-bottom: 10px;
+		margin-bottom: 2vw;
 	}
 
 	.welcome-text h1 {
-		font-size: 32px;
+		font-size: 7vw;
 	}
 }
 
@@ -239,7 +239,6 @@ p {
 	.way-marker {
 		width: 30%;
 		height: 30%;
-		border-radius: 100%;
 	}
 }
 
@@ -251,13 +250,6 @@ p {
 	z-index: 100;
 }
 
-@media (max-width: 500px) {
-	.restart-btn {
-		width: 200px;
-		height: 100px;
-	}
-}
-
 .btn {
 	font-size: inherit;
 	background: #552f1e;
@@ -265,6 +257,14 @@ p {
 	padding: 10px;
 	border-radius: 5px;
 	cursor: pointer;
+}
+
+@media (max-width: 500px) {
+	.btn {
+		font-size: 6vw;
+		padding: 2vw;
+		border-radius: 7%;
+	}
 }
 
 .btn:hover {

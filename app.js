@@ -198,6 +198,10 @@ class BallsRender {
 		'rgb(153, 153, 0)',
 		'rgb(0, 153, 153)',
 		'rgb(153, 0, 153)',
+
+		'rgb(50, 50, 50)',
+		'rgb(153, 153, 153)',
+		'rgb(255, 255, 255)',
 	]
 
 	/** Генерирует 3 шара случайного цвета на свободных клетках поля,
@@ -349,9 +353,22 @@ class WayChecker {
 	}
 
 	/** Маркировка пути между активной и целевой клетками
+	 * очистка маркеров через указанное время
+	 * @param {Array<Element>} way - массив клеток полученный из метода проверяющего путь
+	 * @param {number} ms - время в миллисекундах 
+	*/
+	static marking(way, ms) {
+		this.#marksMake(way)
+
+		setTimeout(() => {
+			WayChecker.#marksClear()
+		}, ms)
+	}
+
+	/** Маркировка пути между активной и целевой клетками
 	 * @param {Array<Element>} way - массив клеток полученный из метода проверяющего путь
 	*/
-	static mark(way) {
+	static #marksMake(way) {
 		let ball = way[0].querySelector('.ball')
 		let lastCell = way.pop()
 		let ballInLastCell = lastCell.querySelector('.ball')
@@ -369,7 +386,7 @@ class WayChecker {
 	}
 
 	/** Очистка маркеров пути */
-	static markClear() {
+	static #marksClear() {
 		const markers = document.querySelectorAll('.way-marker')
 		markers.forEach(marker => marker.remove())
 	}
@@ -757,42 +774,28 @@ class Game {
 					let way = WayChecker.check(activeCell, targetCell)
 
 					if (way && activeCell !== targetCell) {
-						// маркировка пути
-						WayChecker.mark(way)
-						setTimeout(() => {
-							WayChecker.markClear()
-						}, 500)
-
 						// если путь найден и клетки разные
+
 						if (targetBall) {
 							// если в целевой клетке уже есть шар
 							if (activeBall.style.background !== targetBall.style.background) {
 								// если шары разного цвета
+								WayChecker.marking(way, 500)
+								this.#addingNewBalls(900)
+								this.#figureChecking(activeBall, targetBall, 600)
+
 								targetCell.append(activeBall)
 								activeCell.append(targetBall)
 							}
 
 						} else {
 							// если клетка пустая
+							WayChecker.marking(way, 500)
+							this.#addingNewBalls(900)
+							this.#figureChecking(activeBall, targetBall, 600)
+							
 							targetCell.append(activeBall)
 						}
-
-						// проверяю получившиеся фигуры
-						setTimeout(function (activeBall, targetBall) {
-							let figureComplete = FigureChecker.check(activeBall, targetBall)
-							InfoUpdater.updater(figureComplete)
-						}, 600, activeBall, targetBall)
-
-						//добавляю новые шары на поле
-						setTimeout(function () {
-							let ballsFromRender = BallsRender.make()
-
-							FigureChecker.check(...ballsFromRender)
-
-							if (InfoUpdater.freeCellCounter() <= 0) {
-								Game.finish()
-							}
-						}, 900)
 
 					} else {
 						// если путь к целевой клетке не найден
@@ -816,6 +819,37 @@ class Game {
 		Interface.cellsDisable()
 		Interface.playAgainBtnListener()
 
+	}
+
+	/** Добавление новых шаров на поле после указанной задержки,
+	 * проверка пустых клеток и обновление информации
+	 * @param {number} ms - задержка в миллисекундах 
+	 */
+	static #addingNewBalls(ms) {
+		setTimeout(function () {
+			let ballsFromRender = BallsRender.make()
+
+			FigureChecker.check(...ballsFromRender)
+
+			if (InfoUpdater.freeCellCounter() <= 0) {
+				Game.finish()
+			}
+		}, ms)
+	}
+
+	/** Проверка получившихся фигур
+	 * удаление их с поля после указанной задержки
+	 * обновление очков 
+	 * @param {Element | null} activeBall - активный шар
+	 * @param {Element | null} targetBall - целевой шар
+	 * @param {number} ms - задержка в миллисекундах 
+	*/
+	static #figureChecking(activeBall, targetBall, ms) {
+
+		setTimeout(function (activeBall, targetBall) {
+			let figureComplete = FigureChecker.check(activeBall, targetBall)
+			InfoUpdater.updater(figureComplete)
+		}, ms, activeBall, targetBall)
 	}
 }
 

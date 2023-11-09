@@ -471,7 +471,8 @@ class FigureChecker {
 	static check(...balls) {
 		let goodMoves = []
 		for (const ball of balls) {
-			if (!ball) continue
+			if (!(ball && ball instanceof Element)) continue
+			
 			const ballsInRow = this.#ballsInRowCheck(ball)
 			const ballsInCol = this.#ballsInColCheck(ball)
 			const ballsInBlock = this.#ballsInBlockCheck(ball)
